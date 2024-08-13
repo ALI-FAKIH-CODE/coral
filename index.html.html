@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coral Reef Conservation Organization in Tanzania</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="education.css">
+    <link href="https://getbootstrap.com/docs/4.0/components/navbar/" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Coral Reef Conservation Organization in Tanzania</h1>
+        <nav>
+            <ul>
+                <li><button id="HOME-BTN">Home</button></li>
+                <li><button id="ABOUT-US-BTN">About Us</button></li>
+                <li><button id="GET-INVOLVED-BTN">Get Involved</button></li>
+                <li><button id="OUR-ACTIVITIES-BTN">Our Activities</button></li>
+                <li><button id="CONTACT-US-BTN">Contact Us</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="HOME-SECTION" class="tab-content">
+            <div class="content">
+                <p>Welcome to our Coral Reef Conservation Organization. We are committed to protecting the marine ecosystem and promoting sustainable practices in Tanzania.</p>
+            </div>
+        </section>
+
+        <section id="ABOUT-US-SECTION" class="tab-content hidden">
+            <div class="content">
+                <button class="tab-btn" data-target="OUR-ETHOS">Our Ethos</button>
+                <button class="tab-btn" data-target="OUR-TEAM">Our Team and Board</button>
+                <button class="tab-btn" data-target="PARTNERS">Our Partners</button>
+                <button class="tab-btn" data-target="ORGANIZATION">Our Organization</button>
+            </div>
+            <div id="OUR-ETHOS" class="tab-content hidden">
+                <h2>Our Ethos</h2>
+                <p>We believe in the power of community and education to preserve coral reefs for future generations.</p>
+            </div>
+            <div id="OUR-TEAM" class="tab-content hidden">
+                <h2>Our Team and Board</h2>
+                <p>Meet the passionate individuals behind our mission.</p>
+            </div>
+            <div id="PARTNERS" class="tab-content hidden">
+                <h2>Our Partners</h2>
+                <p>We collaborate with local and international organizations to maximize our impact.</p>
+            </div>
+            <div id="ORGANIZATION" class="tab-content hidden">
+                <h2>Our Organization</h2>
+                <p>Learn more about our structure and how we operate.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Coral Reef Conservation Organization. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const targetId = e.target.getAttribute('data-target');
+                    tabContents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Default to showing the HOME section
+            document.getElementById('HOME-SECTION').classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>
