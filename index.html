@@ -5,9 +5,111 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coral Reef Conservation Organization in Tanzania</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="education.css">
-    <link href="https://getbootstrap.com/docs/4.0/components/navbar/" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #004080;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #00264d;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 10px;
+        }
+
+        nav ul li button {
+            background: none;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        nav ul li button:hover {
+            background-color: #0059b3;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content button {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .dropdown-content button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .tab-content {
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #004080;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,43 +118,62 @@
         <nav>
             <ul>
                 <li><button id="HOME-BTN">Home</button></li>
-                <li><button id="ABOUT-US-BTN">About Us</button></li>
-                <li><button id="GET-INVOLVED-BTN">Get Involved</button></li>
-                <li><button id="OUR-ACTIVITIES-BTN">Our Activities</button></li>
-                <li><button id="CONTACT-US-BTN">Contact Us</button></li>
+                <li class="dropdown">
+                    <button id="ABOUT-US-BTN">About Us</button>
+                    <div class="dropdown-content">
+                        <button class="tab-btn" data-target="OUR-ETHOS">Our Ethos</button>
+                        <button class="tab-btn" data-target="OUR-TEAM">Our Team and Board</button>
+                        <button class="tab-btn" data-target="PARTNERS">Our Partners</button>
+                        <button class="tab-btn" data-target="ORGANIZATION">Our Organization</button>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <button id="OUR-ACTIVITIES-BTN">Our Activities</button>
+                    <div class="dropdown-content">
+                        <button class="tab-btn" data-target="WHAT-WE-DO">What We Do</button>
+                        <button class="tab-btn" data-target="WHERE-WE-WORK">Where We Work</button>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <!-- Home Section -->
         <section id="HOME-SECTION" class="tab-content">
-            <div class="content">
-                <p>Welcome to our Coral Reef Conservation Organization. We are committed to protecting the marine ecosystem and promoting sustainable practices in Tanzania.</p>
-            </div>
+            <h2>Welcome to Our Coral Reef Conservation Organization</h2>
+            <p>We are committed to protecting the marine ecosystem and promoting sustainable practices in Tanzania. Our mission is to preserve coral reefs for future generations through community engagement, education, and hands-on conservation efforts.</p>
         </section>
 
-        <section id="ABOUT-US-SECTION" class="tab-content hidden">
-            <div class="content">
-                <button class="tab-btn" data-target="OUR-ETHOS">Our Ethos</button>
-                <button class="tab-btn" data-target="OUR-TEAM">Our Team and Board</button>
-                <button class="tab-btn" data-target="PARTNERS">Our Partners</button>
-                <button class="tab-btn" data-target="ORGANIZATION">Our Organization</button>
-            </div>
+        <!-- About Us Section -->
+        <section id="ABOUT-US-SECTION">
             <div id="OUR-ETHOS" class="tab-content hidden">
                 <h2>Our Ethos</h2>
-                <p>We believe in the power of community and education to preserve coral reefs for future generations.</p>
+                <p>We believe in the power of community and education to preserve coral reefs for future generations. Our ethos is centered around sustainability, collaboration, and respect for nature.</p>
             </div>
             <div id="OUR-TEAM" class="tab-content hidden">
                 <h2>Our Team and Board</h2>
-                <p>Meet the passionate individuals behind our mission.</p>
+                <p>Our team consists of passionate marine biologists, environmentalists, and local community leaders who work together to achieve our conservation goals.</p>
             </div>
             <div id="PARTNERS" class="tab-content hidden">
                 <h2>Our Partners</h2>
-                <p>We collaborate with local and international organizations to maximize our impact.</p>
+                <p>We collaborate with local and international organizations to maximize our impact and promote sustainable practices in coral reef conservation.</p>
             </div>
             <div id="ORGANIZATION" class="tab-content hidden">
                 <h2>Our Organization</h2>
-                <p>Learn more about our structure and how we operate.</p>
+                <p>Learn more about our structure and how we operate. We are a non-profit organization dedicated to preserving marine life in Tanzania.</p>
+            </div>
+        </section>
+
+        <!-- Our Activities Section -->
+        <section id="OUR-ACTIVITIES-SECTION">
+            <div id="WHAT-WE-DO" class="tab-content hidden">
+                <h2>What We Do</h2>
+                <p>We conduct coral reef monitoring, restoration projects, and community education programs. Our activities are aimed at restoring damaged reefs and ensuring their long-term survival.</p>
+            </div>
+            <div id="WHERE-WE-WORK" class="tab-content hidden">
+                <h2>Where We Work</h2>
+                <p>Our work is primarily focused on the coral reefs along the coast of Tanzania. We partner with local communities to implement our conservation strategies.</p>
             </div>
         </section>
     </main>
