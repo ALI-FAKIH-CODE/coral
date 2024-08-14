@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coral Reef Conservation Organization in Tanzania</title>
+    <link href="styles.css" rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -83,6 +84,9 @@
         main {
             padding: 20px;
         }
+        H1 {
+            text-align: center;
+        }
 
         .hidden {
             display: none;
@@ -94,6 +98,11 @@
 
         h2 {
             color: #004080;
+            
+        }
+        H3 {
+            text-align: center;
+
         }
 
         p {
@@ -108,7 +117,9 @@
             text-align: center;
             padding: 10px 0;
             margin-top: 20px;
+            
         }
+        
     </style>
 </head>
 
@@ -134,6 +145,13 @@
                         <button class="tab-btn" data-target="WHERE-WE-WORK">Where We Work</button>
                     </div>
                 </li>
+                <li class="dropdown">
+                    <button id="GET-INVOLVED-BTN">Get involved</button>
+                    <div class="dropdown-content">
+                        <button class="tab-btn" data-target="become-member">Become member</button>
+                        <button class="tab-btn" data-target="donate">Donate</button>
+                    </div>
+                </li>             
             </ul>
         </nav>
     </header>
@@ -164,6 +182,7 @@
                 <p>Learn more about our structure and how we operate. We are a non-profit organization dedicated to preserving marine life in Tanzania.</p>
             </div>
         </section>
+        
 
         <!-- Our Activities Section -->
         <section id="OUR-ACTIVITIES-SECTION">
@@ -176,9 +195,129 @@
                 <p>Our work is primarily focused on the coral reefs along the coast of Tanzania. We partner with local communities to implement our conservation strategies.</p>
             </div>
         </section>
+
+        <!-- get involved section -->
+        <section id="get-involved-section">
+            <div id="become-member" class="tab-content hidden">
+                <style>
+                    .membership-form {
+                        background: white;
+                        padding: 20px;
+                        border-radius: 5px;
+                        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                    }
+                    .membership-form input {
+                        width: 100%;
+                        padding: 10px;
+                        margin: 5px 0;
+                        border: 1px solid #ddd;
+                        border-radius: 3px;
+                    }
+                    .membership-form button {
+                        background: #007bff;
+                        color: white;
+                        border: none;
+                        padding: 10px;
+                        border-radius: 3px;
+                        cursor: pointer;
+                    }
+                </style>
+                <div class="membership-form">
+                    <h2>Become a Member</h2>
+                    <form id="membership-form">
+                        <input type="text" id="name" placeholder="Name" required>
+                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="password" id="password" placeholder="Password" required>
+                        <button type="submit">Join Now</button>
+                    </form>
+                    <p id="response-message"></p>
+                </div>
+            
+                <script>
+                    document.getElementById('membership-form').addEventListener('submit', function(event) {
+                        event.preventDefault();
+            
+                        const name = document.getElementById('name').value;
+                        const email = document.getElementById('email').value;
+                        const password = document.getElementById('password').value;
+            
+                        fetch('/api/members', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ name, email, password })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('response-message').textContent = data.message;
+                            if (data.success) {
+                                document.getElementById('membership-form').reset();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            document.getElementById('response-message').textContent = 'An error occurred. Please try again.';
+                        });
+                    });
+                </script>
+
+                </div>
+
+            </div>
+            <div id="donate" class="tab-content hidden">
+                <h2>Donate</h2>
+                <form id="donation-form">
+                    <input type="text" id="amount" placeholder="Enter Donation Amount" required>
+                    <button id="checkout-button">Donate</button>
+                  </form>
+                  <script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('your-publishable-key'); // Replace with your Stripe publishable key
+
+  const checkoutButton = document.getElementById('checkout-button');
+
+  checkoutButton.addEventListener('click', function () {
+    const amount = document.getElementById('amount').value * 100; // Stripe expects the amount in cents
+
+    stripe.redirectToCheckout({
+      lineItems: [{
+        price_data: {
+          currency: 'usd', // Replace with your currency
+          product_data: {
+            name: 'Donation',
+          },
+          unit_amount: amount,
+        },
+        quantity: 1,
+      }],
+      mode: 'payment',
+      successUrl: 'https://yourdomain.com/success', // Replace with your success URL
+      cancelUrl: 'https://yourdomain.com/cancel', // Replace with your cancel URL
+    })
+    .then(function (result) {
+      if (result.error) {
+        alert(result.error.message);
+      }
+    });
+  });
+</script>
+
+            </div>    
+        </section>
+
+        <!-- CONTACT US SECTION -->
+        <section>
+            <h1>CONTACT US</h1>
+            <div> 
+                    <h2>NUMBERS:</H2>
+                    <H2>OUR WEBSITES:</H2>
+            </div>
+        </section>
     </main>
 
     <footer>
+       
         <p>&copy; 2024 Coral Reef Conservation Organization. All rights reserved.</p>
     </footer>
 
