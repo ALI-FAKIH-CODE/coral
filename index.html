@@ -233,6 +233,21 @@
 
                 </div>
                 <script>
+                    app.post('/register', (req, res) => {
+    const { username, password, email } = req.body;
+
+    membersCollection.insertOne({ username, password, email, date_joined: new Date() })
+        .then(result => {
+            // Success response
+            res.send('Registration successful! <a href="/">Go back</a>');
+        })
+        .catch(error => {
+            console.error(error);
+            // Error response
+            res.status(500).send('An error occurred. Please try again later.');
+        });
+});
+
                     const express = require('express');
 const { MongoClient } = require('mongodb');
 const app = express();
